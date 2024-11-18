@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu com Submenus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="views/stilo_home.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>Cadastros</h2>
+        <ul>
+            <li>
+                <a href="#">
+                    <i class="fas fa-user"></i> Pessoa
+                    <ul class="submenu">
+                        <li><a href="#" data-target="formulario-tipo-pessoa"><i class="fas fa-user-tag"></i> Tipo Pessoa</a></li>
+                        <li><a href="#" data-target="formulario-vincula"><i class="fas fa-link"></i> Vincula</a></li>
+                    </ul>
+                    <div id="formulario-tipo-pessoa" class="formulario" style="display: none;">
+                        <form>
+                          <h2>Tipo Pessoa</h2>
+                          <label for="nome">Nome:</label>
+                          <input type="text" id="nome" name="nome" required>
+                          
+                          <label for="teste">teste:</label>
+                          <input type="text" id="teste" name="" required>
+                          
+                      
+                          <label for="descricao">Descrição:</label>
+                          <textarea id="descricao" name="descricao"></textarea>
+                      
+                          <button type="submit">Salvar</button>
+                        </form>
+                      </div>
+                    
+                </a>
+            </li>
+            <li><a href="#"><i class="fas fa-users"></i> Usuários</a></li>
+            <li><a href="#"><i class="fas fa-building"></i> Instituição</a></li>
+            <li><a href="#"><i class="fas fa-landmark"></i> Orgão</a></li>
+            <li><a href="#"><i class="fas fa-graduation-cap"></i> Modalidade de Ensino</a></li>
+            <li><a href="#"><i class="fas fa-chalkboard-teacher"></i> Turma</a></li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-school"></i> Escola
+                    <ul class="submenu">
+                        <li><a href="#" data-target="formulario-enturmar"><i class="fas fa-users-class"></i> Enturmar</a></li>
+                        <li><a href="#" data-target="formulario-vincular-docentes"><i class="fas fa-user-plus"></i> Vincular Docentes</a></li>
+                    </ul>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-user-graduate"></i> Alunos
+                    <ul class="submenu">
+                        <li><a href="#" data-target="formulario-matricula"><i class="fas fa-book-reader"></i> Matrícula</a></li>
+                        <li><a href="#" data-target="formulario-transferir"><i class="fas fa-exchange-alt"></i> Transferir</a></li>
+                    </ul>
+                </a>
+            </li>
+        </ul>
+
+        <h2>Inventários</h2>
+        <ul>
+            <li>
+                <a href="#">
+                    <i class="fas fa-clipboard-list"></i> Inventários
+                    <ul class="submenu">
+                        <li><a href="#" data-target="formulario-eixos"><i class="fas fa-chart-pie"></i> Eixos</a></li>
+                        <li><a href="#" data-target="formulario-propostas"><i class="fas fa-lightbulb"></i> Propostas</a></li>
+                    </ul>
+                </a>
+            </li>
+        </ul>
+
+        <h2>Relatórios</h2>
+        <ul>
+            <li><a href="#"><i class="fas fa-school"></i> Relatórios Geral </a></li>
+        </ul>
+
+        <h2>Migrações</h2>
+        <ul>
+            <li><a href="#"><i class="fas fa-school"></i> Escola</a></li>
+            <li><a href="#"><i class="fas fa-user-graduate"></i> Aluno</a></li>
+        </ul>
+    </div>
+
+    <div id="formulario-container" style="display: none;"></div> 
+
+    <script>
+        const menuItems = document.querySelectorAll('.sidebar li a');
+
+        menuItems.forEach(item => {
+            if (item.querySelector('.submenu')) {
+                // ... (código para adicionar seta indicadora, se necessário) ...
+            }
+
+            if (item.dataset.target) {
+                item.addEventListener('click', function(event) {
+                    event.preventDefault(); 
+
+                    const formularios = document.querySelectorAll('[id^="formulario-"]');
+                    formularios.forEach(el => el.style.display = 'none');
+
+                    const formularioId = this.dataset.target;
+                    const formulario = document.getElementById(formularioId);
+                    formulario.style.display = 'block'; 
+                });
+            }
+        });
+    </script>
+
+    <script src="views/home.js"></script> 
+</body>
+</html>
